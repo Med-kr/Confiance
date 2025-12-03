@@ -21,3 +21,16 @@ SELECT
     *
 FROM
     Customers;
+
+-- 4. Afficher uniquement full_name et email des customers
+SELECT
+    full_name,
+    email
+FROM
+    Customers;
+
+-- 5. Afficher tous les accounts
+SELECT
+    *
+FROM
+    Accounts;
