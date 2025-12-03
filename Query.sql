@@ -181,3 +181,41 @@ FROM
     Accounts a
     JOIN Customers c ON a.customer_id = c.customer_id
     JOIN Advisors ad ON a.advisor_id = ad.advisor_id;
+
+-- Bonus 1: Compter le nombre de transactions par account
+SELECT
+    account_id,
+    COUNT(*) AS total_transactions
+FROM
+    Transactions
+GROUP BY
+    account_id;
+
+-- Bonus 2: Afficher le total du balance de tous les accounts d’un customer
+SELECT
+    customer_id,
+    SUM(balance) AS total_balance
+FROM
+    Accounts
+GROUP BY
+    customer_id;
+
+-- Bonus 4: Afficher le total des montants debit et credit par account
+SELECT
+    account_id,
+    SUM(
+        CASE
+            WHEN transaction_type = 'debit' THEN amount
+            ELSE 0
+        END
+    ) AS total_debit,
+    SUM(
+        CASE
+            WHEN transaction_type = 'credit' THEN amount
+            ELSE 0
+        END
+    ) AS total_credit
+FROM
+    Transactions
+GROUP BY
+    account_id;
