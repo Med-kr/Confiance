@@ -34,3 +34,15 @@ SELECT
     *
 FROM
     Accounts;
+
+-- 6. Afficher uniquement account_number
+SELECT
+    account_number
+FROM
+    Accounts;
+
+-- 7. Afficher toutes les transactions
+SELECT
+    *
+FROM
+    Transactions;
