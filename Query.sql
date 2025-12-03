@@ -46,3 +46,19 @@ SELECT
     *
 FROM
     Transactions;
+
+-- 8. Afficher les accounts avec un balance > 10000
+SELECT
+    *
+FROM
+    Accounts
+WHERE
+    balance > 10000;
+
+-- 9. Afficher les accounts avec un balance ≤ 0
+SELECT
+    *
+FROM
+    Accounts
+WHERE
+    balance <= 0;
