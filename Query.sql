@@ -62,3 +62,27 @@ FROM
     Accounts
 WHERE
     balance <= 0;
+
+-- 10. Afficher les transactions de type "debit"
+SELECT
+    *
+FROM
+    Transactions
+WHERE
+    transaction_type = 'debit';
+
+-- 11. Afficher les transactions de type "credit"
+SELECT
+    *
+FROM
+    Transactions
+WHERE
+    transaction_type = 'credit';
+
+-- 12. Afficher les transactions du account_id = 1
+SELECT
+    *
+FROM
+    Transactions
+WHERE
+    account_id = 1;
