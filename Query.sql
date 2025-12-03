@@ -86,3 +86,98 @@ FROM
     Transactions
 WHERE
     account_id = 1;
+
+-- 13. Afficher les customers ayant un account géré par l’advisor_id = 2
+SELECT DISTINCT
+    c.*
+FROM
+    Customers c
+    JOIN Accounts a ON c.customer_id = a.customer_id
+WHERE
+    a.advisor_id = 2;
+
+-- 14. Afficher les accounts ayant account_type = "Savings"
+SELECT
+    *
+FROM
+    Accounts
+WHERE
+    account_type = 'Savings';
+
+-- 15. Afficher les transactions avec un amount ≥ 500
+SELECT
+    *
+FROM
+    Transactions
+WHERE
+    amount >= 500;
+
+-- 16. Afficher les transactions avec un amount entre 100 et 1000
+SELECT
+    *
+FROM
+    Transactions
+WHERE
+    amount BETWEEN 100 AND 1000;
+
+-- 17. Afficher les accounts du customer_id = 1
+SELECT
+    *
+FROM
+    Accounts
+WHERE
+    customer_id = 1;
+
+-- 18. Afficher les accounts triés par balance (ordre croissant)
+SELECT
+    *
+FROM
+    Accounts
+ORDER BY
+    balance ASC;
+
+-- 19. Afficher les transactions triées par amount (ordre décroissant)
+SELECT
+    *
+FROM
+    Transactions
+ORDER BY
+    amount DESC;
+
+-- 20. Afficher les 5 plus grandes transactions
+SELECT
+    *
+FROM
+    Transactions
+ORDER BY
+    amount DESC
+LIMIT
+    5;
+
+-- 21. Afficher toutes les transactions triées par transaction_date décroissante            
+SELECT
+    *
+FROM
+    Transactions
+ORDER BY
+    transaction_date DESC;
+
+-- 22. Afficher les 3 dernières transactions
+SELECT
+    *
+FROM
+    Transactions
+ORDER BY
+    transaction_date DESC
+LIMIT
+    3;
+
+-- 23. Afficher chaque account avec le nom du customer et le nom de l’advisor
+SELECT
+    a.account_number,
+    c.full_name AS customer_name,
+    ad.full_name AS advisor_name
+FROM
+    Accounts a
+    JOIN Customers c ON a.customer_id = c.customer_id
+    JOIN Advisors ad ON a.advisor_id = ad.advisor_id;
