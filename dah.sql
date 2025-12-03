@@ -26,3 +26,13 @@ CREATE TABLE
         FOREIGN KEY (customer_id) REFERENCES Customers (Customers_id),
         FOREIGN KEY (advisor_id) REFERENCES Advisors (advisor_id)
     );
+
+CREATE TABLE
+    Transactions (
+        transaction_id INT PRIMARY KEY AUTO_INCREMENT,
+        amount DECIMAL(15, 2) NOT NULL,
+        transaction_type ENUM ('debit', 'credit') NOT NULL,
+        transaction_date DATE,
+        account_id INT,
+        FOREIGN KEY (account_id) REFERENCES Accounts (account_id)
+    );
