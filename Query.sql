@@ -15,3 +15,9 @@ SET
     phone = '0656789012'
 WHERE
     customer_id = 1;
+
+-- 3. Afficher tous les customers
+SELECT
+    *
+FROM
+    Customers;
