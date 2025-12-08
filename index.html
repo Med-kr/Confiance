@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="src/output.css" />
+    <title>Confiance — Dashboard</title>
+
+    <link rel="icon" href="Image/logo_confiance.jpeg" type="image/jpeg" />
+
+    <link rel="stylesheet" href="styles.css" />
+
+    <style>
+      /* Style minimal */
+      :root {
+        --accent: #0d6efd;
+        --bg: #0d162c;
+        --card: #ffffff;
+        --muted: #6b7280;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: Inter, system-ui, Arial, sans-serif;
+        margin: 0;
+        background: var(--bg);
+        color: #111;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 12px 20px;
+        background: var(--card);
+        box-shadow: 0 1px 4px rgba(10, 10, 10, 0.04);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+      .logo img {
+        height: 42px;
+        width: auto;
+      }
+      .menu-button {
+        display: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+      }
+      nav.primary {
+        margin-left: auto;
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+      nav.primary a {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px;
+        text-decoration: none;
+        color: inherit;
+        border-radius: 8px;
+      }
+      nav.primary a img {
+        height: 26px;
+        width: 26px;
+      }
+      main {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 0 16px;
+      }
+      .grid {
+        display: grid;
+        gap: 16px;
+      }
+      .grid.cols-3 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .card {
+        background: var(--card);
+        padding: 16px;
+        border-radius: 10px;
+        box-shadow: 0 1px 3px rgba(10, 10, 10, 0.04);
+      }
+      .toolbar {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #eee;
+      }
+
+      @media (max-width: 900px) {
+        .grid.cols-3 {
+          grid-template-columns: 1fr;
+        }
+        nav.primary {
+          display: none;
+        }
+        .menu-button {
+          display: inline-block;
+          margin-left: auto;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="flex items-center h-20 px-8 bg-white shadow">
+      <img
+        src="Image/logo.png"
+        class="h-22 w-auto object-contain"
+        alt="Logo Confiance"
+      />
+
+      <!-- Bouton menu mobile -->
+      <button class="menu-button" aria-label="Ouvrir le menu">
+        <img src="Image/menu.png" class="h-22 w-auto object-contain" alt="Menu" style="height: 28px" />
+      </button>
+
+      <nav class="primary" aria-label="Navigation principale">
+        <a href="list_accounts.php" title="Comptes">
+          <img src="Image/Acounts.png" alt="" />
+        </a>
+        <a href="list_clients.php" title="Clients">
+          <img src="Image/customer-review.png" alt="" />
+        </a>
+        <a href="list_transactions.php" title="Transactions">
+          <img src="Image/transitions.png" alt="" />
+        </a>
+        <a href="dashboard.php" title="Tableau de bord">
+          <img src="Image/dashboard.png" alt="" />
+        </a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Barre d'outils -->
+      <section class="card toolbar">
+        <div style="flex: 1">
+          <h1 style="margin: 0">Tableau de bord — Confiance</h1>
+          <p style="margin: 0; color: var(--muted); font-size: 14px">
+            Gérer les clients, comptes et transactions
+          </p>
+        </div>
+
+        <form class="search" action="list_clients.php" method="get">
+          <input
+            type="search"
+            name="q"
+            placeholder="Rechercher..."
+            style="
+              width: 100%;
+              padding: 8px;
+              border: 1px solid #e6e9ef;
+              border-radius: 8px;
+            "
+          />
+        </form>
+
+        <div style="display: flex; gap: 8px; margin-left: 12px">
+          <a
+            href="add_client.php"
+            class="card"
+            style="
+              background: var(--accent);
+              color: #fff;
+              padding: 8px 12px;
+              text-decoration: none;
+            "
+            >+ Client</a
+          >
+
+          <a
+            href="add_account.php"
+            class="card"
+            style="
+              background: #22c55e;
+              color: #fff;
+              padding: 8px 12px;
+              text-decoration: none;
+            "
+            >+ Compte</a
+          >
+        </div>
+      </section>
+
+      <!-- Statistiques -->
+      <section class="grid cols-3" style="margin-top: 16px">
+        <div class="card">
+          <h3>Clients</h3>
+          <p style="font-size: 28px; margin: 6px 0">1,234</p>
+          <p style="color: var(--muted); margin: 0">
+            Total clients enregistrés
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Comptes</h3>
+          <p style="font-size: 28px; margin: 6px 0">2,890</p>
+          <p style="color: var(--muted); margin: 0">Comptes actifs</p>
+        </div>
+
+        <div class="card">
+          <h3>Transactions (aujourd'hui)</h3>
+          <p style="font-size: 28px; margin: 6px 0">128</p>
+          <p style="color: var(--muted); margin: 0">
+            Montant total : 45 200,00 MAD
+          </p>
+        </div>
+      </section>
+
+      <!-- Liste clients -->
+      <section class="card" style="margin-top: 16px">
+        <h2>Derniers clients</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nom complet</th>
+              <th>Email</th>
+              <th>Téléphone</th>
+              <th>Date d'inscription</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Exemples -->
+            <tr>
+              <td>1</td>
+              <td>Mohammed Kassir</td>
+              <td>med.kr.dev@gmail.com</td>
+              <td>+212689781326</td>
+              <td>2025-11-01</td>
+              <td>
+                <a href="view_client.php?id=1">Voir</a> |
+                <a href="edit_client.php?id=1">Modifier</a> |
+                <a
+                  href="delete_client.php?id=1"
+                  onclick="return confirm('Confirmer la suppression ?')"
+                  >Suppr.</a
+                >
+              </td>
+            </tr>
+
+            <tr>
+              <td>2</td>
+              <td>Amina Cherkaoui</td>
+              <td>amina.cherk@example.com</td>
+              <td>+212600123456</td>
+              <td>2025-10-15</td>
+              <td>
+                <a href="view_client.php?id=2">Voir</a> |
+                <a href="edit_client.php?id=2">Modifier</a> |
+                <a
+                  href="delete_client.php?id=2"
+                  onclick="return confirm('Confirmer la suppression ?')"
+                  >Suppr.</a
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Compte récents -->
+      <section class="card" style="margin-top: 16px">
+        <h2>Comptes récents</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Numéro</th>
+              <th>Type</th>
+              <th>Solde</th>
+              <th>Client</th>
+              <th>Conseiller</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>FR76 1234 5987 6501 2345 6789 01</td>
+              <td>Checking</td>
+              <td>15 000,00</td>
+              <td>Mohammed K.</td>
+              <td>Hamza B.</td>
+              <td><a href="view_account.php?id=1">Voir</a></td>
+            </tr>
+
+            <tr>
+              <td>2</td>
+              <td>MA12 0000 1122 3344 5566 7788 99</td>
+              <td>Savings</td>
+              <td>25 000,50</td>
+              <td>Mohammed K.</td>
+              <td>Sara E.</td>
+              <td><a href="view_account.php?id=2">Voir</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Transactions -->
+      <section class="card" style="margin-top: 16px; margin-bottom: 40px">
+        <h2>Dernières transactions</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Compte</th>
+              <th>Type</th>
+              <th>Montant</th>
+              <th>Date</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>101</td>
+              <td>FR76...01</td>
+              <td>credit</td>
+              <td>5 000,00</td>
+              <td>2025-11-02 09:10</td>
+              <td>Salaire Novembre</td>
+            </tr>
+            <tr>
+              <td>102</td>
+              <td>FR76...01</td>
+              <td>debit</td>
+              <td>200,00</td>
+              <td>2025-11-03 12:00</td>
+              <td>Retrait distributeur</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+
+    <footer
+      style="
+        text-align: center;
+        padding: 20px 0;
+        background: var(--card);
+        color: #000;
+      "
+    >
+      <h3>Confiance</h3>
+      &copy; <span id="year"></span> Confiance — Tous droits réservés. | Réalisé
+      par Med_kr
+    </footer>
+
+    <script src="main.js"></script>
+  </body>
+</html>
